@@ -164,48 +164,173 @@ usermod -s pavan
 usermod -d /home/pawan pavan
 ```
 - usermod -l : used to change the username of the user
+```
+usermod -l kumar pavan
+```
 - usermod -L : used to lock the user
+```
+usermod -L pavan
+```
 - usermod -U : used to unlock the user
+```
+usermod -U pavan
+```
 - userdel - : used to delete the user
+```
+userdel pavan
+```
 - userdel -r : used to del the user along with its home directory
+```
+userdel -r pavan
+```
 - passwd - : used to create/change/update the password for a user
+```
+passwd pavan
+```
 - passwd -d : used to delete the password of a user
+```
+passwd -d pavan
+```
 - passwd -e : used to force the user to change the password
+```
+passwd -e pavan
+```
 - passwd -l : used to lock the password of a user
+```
+passwd -l pavan
+```
 - passwd -u : used to unlock the passsowrd of a user
+```
+passwd -u pavan
+```
 - passwd -n : used to set the minimum password lifetime to change again
+```
+passwd -n 10 pavan
+```
 
 ## 3.ACCESS MANAGEMENT
 
 - ssh : used to securely connect to a remote computer or a server and allows secure remote access, file transfer and command execution
+```
+ssh -i "key.pem" ubuntu@ip_address
+```
 - scp : used to securely transfer the files between two linux based systems
+```
+scp -r "key.pem" ./file1 ubuntu@ip_address:/home/ubuntu/
+```
 - sudo : used to perform administrative tasks without logging in as a root user
+```
+sudo useradd kumar
+```
 - su : used to switch from one user to another user / root user
+```
+su kumar
+```
 - chmod : used to change the permissions of a file or directory
+```
+chmod 400 file1 | chmod u+r file1
+```
 - chown : used to change the owner and group of a file or directory
+```
+chown user:group file1
+```
 
 ## 4.CONFIGURATION MANAGEMENT
 
 - env : used to display the current environment variables
+```
+env MYVAR=myvalue ls
+
+```
 - PATH : used to specify the list of directories where executable programs are located
+```
+export PATH=$HOME/mydir:$PATH
+
+echo $PATH
+```
 - echo : used to prints out a message to the console
+```
+echo $PATH
+```
 - export : used to create an environment variable
+```
+export PATH=$HOME/mydir:$PATH
+```
 - hostname : used to prints out the name of the current host
+```
+hostname
+```
 - netstat : used to displays the network connections, routing tables and other network interface statistics
+```
+netstat -tulpn
+```
+```  -t: Displays TCP connections.
+    -u: Displays UDP connections.
+    -l: Displays listening ports.
+    -p: Shows the process ID (PID) and name that the connection is associated with.
+    -n: Shows the numeric address and port numbers, rather than resolving them to host and service names. 
+ ```
+    
+    
 - crontab : used to create, view, delete the crontab files which controls the scheduling of commands to be run at specified time
 - crontab -e : used to create or edit the crontab file
+```
+crontab -e
+```
+*Once the crontab file is open, you can add new entries or modify existing ones using the following syntax:*
+```
+* * * * * command
+```
+*The five asterisks represent the minute, hour, day of the month, month, and day of the week on which the command should be run.*
+
 - crontab -l : used to list the current cron jobs
+```
+crontab -l
+```
 - kill : used to terminate a process by using pid
+```
+kill -9 <1682>
+```
 - pkill : used to sends a signal to a process based on its name
+```
+pkill <tomcat>
+```
 - wget : used to downloads file from the internet
+```
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.5/bin/apache-tomcat-10.1.5.tar.gz
+```
 - curl : used to transfer data between servers using various protocols (HTTPS,HTTPS,SCP)
+```
+curl  -o outputtxt.html https://ubuntu.com/download/desktop.html
+```
 - ping : used to test the connectivity between two networked devices
+```
+ping 8.8.8.8
+```
 - uname : used to prints out system information
+```
+uname
+```
 - history : used to prints out the historty of the executed commands
+```
+history 
+```
 - ps : used to displays information about currently running processes
+```
+ps
+```
 - ps -ux : used to view the list of processes running on the system, including their resource utilization and ownership information
+```
+ps -ux
+```
 - ps -ef : used to view the process tree hierarchy of all processes 
+```
+ps -ef
+```
 - ps -ef | grep <pid> : used to view the information about a specific process by its PID
+```
+ps -ef | grep <1682>
+```
 
 ## 5.Log Management
 
@@ -250,6 +375,9 @@ usermod -d /home/pawan pavan
 	
 
 - ifconfig : used to configure and view network interface parameters such as IP address, netmask, broadcast address, and network interface status
+```
+ifconfig	
+```
 	
 ## Application/Web Servers:
 - An application or web server is a software program that runs on a computer to serve web applications, web pages, or other network services to client devices.
