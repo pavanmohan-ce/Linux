@@ -397,7 +397,7 @@ ifconfig
 	- **Failover**: This involves automatically switching to a backup or secondary system in the event of a failure or outage. For example, if a primary server fails, a secondary server can automatically take over to ensure continuity of service.
 	- **Network virtualization**: This involves creating virtual instances of network devices or services, which can be moved or migrated between physical devices as needed to ensure continuous service.
 ## Create shell script to install Application servers and proxy tools
-Installing and configuring **Apache Tomcat** as an Application server and **Squid** as a proxy tool
+Installing and configuring **Apache Tomcat** as an Application server and **haproxy** as a proxy tool
 ```
 #!/bin/bash
 
@@ -448,16 +448,21 @@ cp context.xml /opt/tomcat/webapps/manager/META-INF/
 systemctl restart tomcat
 echo "Done"
 
-# Install Squid proxy server
-sudo apt-get install -y squid	
+# Install ha proxy server
+sudo apt install haproxy -y	
 ```
 ### configure proxy to access application server through proxy
 ```
-# Configure Squid proxy server
+# Configure ha proxy server
 sudo bash -c 'cat << EOF >> /etc/squid/squid.conf
-http_access allow all
-http_port 3128
+frontend haproxy_in
+        bind *:80
+        default_backend haproxy_http
+backend haproxy_http
+        balance roundrobin
+        mode http
+        server app_server_name pvt_ip_of_app_server:80 check
 EOF'
 
-sudo systemctl restart squid
+sudo systemctl restart haproxy
 ```
